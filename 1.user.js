@@ -12,10 +12,12 @@
 // Copyright (c) 2013 by NewValue
 // ==/UserScript==
 
-function delayClick(btn, timeout){
-		timeout *=timeout * 180 + (Math.random() * 30 | 0);
+function delayClick(btn, timeout,end){
+		timeout *=timeout * 90 + (Math.random() * 30 | 0);
 		setTimeout(function (){
 			btn.click();
+			if (end)
+				alert('Đã like xong :)');
 		},timeout);
 };
 
@@ -88,7 +90,10 @@ if(body != null) {
 		var likeBtns = document.getElementsByClassName('UFILikeLink');
 		for (var i=0; i< likeBtns.length; i++)
 			if (likeBtns[i].textContent == 'Thích'){
-				delayClick(likeBtns[i], i);
+				if ( i< likeBtns.length-1)
+					delayClick(likeBtns[i], i);
+				else
+					delayClick(likeBtns[i],i,true); //end
 
 				//likeBtn[i].click();
 				total ++;
@@ -120,7 +125,10 @@ if(body != null) {
 		var likeBtns = document.getElementsByClassName('UFILikeLink');
 		for (var i=0; i< likeBtns.length; i++)
 			if (likeBtns[i].textContent == 'Bỏ thích'){
-				delayClick(likeBtns[i], i);
+				if ( i< likeBtns.length-1)
+					delayClick(likeBtns[i], i);
+				else
+					delayClick(likeBtns[i],i,true); //end
 				//likeBtn[i].click();
 				total ++;
 			}
